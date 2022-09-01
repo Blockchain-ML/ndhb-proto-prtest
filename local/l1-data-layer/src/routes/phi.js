@@ -31,7 +31,7 @@ router.get('/get/:id', async (req, res) => {
     const AadhaarID = req.params.id;
 
     try {
-        const reply = await DB.Read({ AadhaarID }, SchemaName);
+        const reply   = await DB.Read({ AadhaarID }, SchemaName);
         if (reply) {
             res.status(200).send(reply[0]);
         } else {
