@@ -44,7 +44,7 @@ router.get('/get/:id', async (req, res) => {
 });
 
 // fetch records from the database matching query
-router.post('/query', async (req, res) => {
+ router.post('/query', async (req, res) => {
     // obtain the query object from the body of the request
     const query = req.body;
 
