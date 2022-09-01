@@ -6,17 +6,18 @@ const SchemaName = 'phi';
 const router = new express.Router();
 
 // create a new record object
-router.post('/create', async (req, res) => {
+router.post(  '/create',   async (req, res) => {
     // obtain the record object fro the body of the request
     const object = req.body;
 
     try {
         const reply = await DB.Create(object, SchemaName);
         await DB.Create({ AadhaarID: object.AadhaarID }, 'consent');
+        return;
         if (reply) {
             res.status(201).send(reply);
         } else {
-            throw new Error('Database Error!');
+            throw new Error('Database Error!')
         }
     } catch (err) {
         console.error('SERVER ERROR', err.message);

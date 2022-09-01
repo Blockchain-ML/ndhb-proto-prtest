@@ -6,10 +6,10 @@ const express = require('express');
 const app = express();
 
 // configure dotenv
-require('dotenv').config();
+require("dotenv").config();
 
 // JSON Middleware
-app.use(express.json());
+    app.use(express.json());
 
 // CORS Middleware
 // app.use(cors());

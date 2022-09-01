@@ -32,7 +32,18 @@ jobs:
               run: npm ci
 
             - name: Run linters
-              run: npx eslint . --ext .js,.jsx
+              run: |
+                OUTPUT=$(npx eslint . --ext .js,.jsx)
+                #OUTPUT=$(shell command or script to extract the part your want)
+                echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
+
+            - name: Post result to PR
+              uses: mshick/add-pr-comment@v1
+              with:
+                message: ${{ env.MESSAGE }}
+                repo-token: ${{ secrets.GITHUB_TOKEN }}
+                repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+                allow-repeats: false # This is the default
 
     local-lint-l2:
         name: Run [LOCAL] ESLint on L2 Function Layer
